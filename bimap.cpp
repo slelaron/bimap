@@ -4,7 +4,7 @@
 
 //Created by slelaron
 
-using namespace std;
+//using namespace std;
 
 bimap::bimap():
 	root_left(nullptr),
@@ -69,50 +69,50 @@ bimap::node* bimap::merge(node* l, node* r, bool part)
 	}
 }
 
-pair<bimap::node*, bimap::node*> bimap::split(node* root, node* splitter, bool part)
+std::pair<bimap::node*, bimap::node*> bimap::split(node* root, node* splitter, bool part)
 {
 	if (root == nullptr)
-		return make_pair(nullptr, nullptr);
+		return std::make_pair(nullptr, nullptr);
 	if (part)
 	{
 		if (root->left_data < splitter->left_data)
 		{
-			pair <node*, node*> tmp = split(root->left_right, splitter, part);
+			std::pair <node*, node*> tmp = split(root->left_right, splitter, part);
 			root->left_right = tmp.first;
 			if (tmp.first != nullptr)
 				tmp.first->left_parent = root;
 			root->left_parent = nullptr;
-			return make_pair(root, tmp.second);
+			return std::make_pair(root, tmp.second);
 		}
 		else
 		{
-			pair <node*, node*> tmp = split(root->left_left, splitter, part);
+			std::pair <node*, node*> tmp = split(root->left_left, splitter, part);
 			root->left_left = tmp.second;
 			if (tmp.second != nullptr)
 				tmp.second->left_parent = root;
 			root->left_parent = nullptr;
-			return make_pair(tmp.first, root);
+			return std::make_pair(tmp.first, root);
 		}
 	}
 	else
 	{
 		if (root->right_data < splitter->right_data)
 		{
-			pair <node*, node*> tmp = split(root->right_right, splitter, part);
+			std::pair <node*, node*> tmp = split(root->right_right, splitter, part);
 			root->right_right = tmp.first;
 			if (tmp.first != nullptr)
 				tmp.first->right_parent = root;
 			root->right_parent = nullptr;
-			return make_pair(root, tmp.second);
+			return std::make_pair(root, tmp.second);
 		}
 		else
 		{
-			pair <node*, node*> tmp = split(root->right_left, splitter, part);
+			std::pair <node*, node*> tmp = split(root->right_left, splitter, part);
 			root->right_left = tmp.second;
 			if (tmp.second != nullptr)
 				tmp.second->right_parent = root;
 			root->right_parent = nullptr;
-			return make_pair(tmp.first, root);
+			return std::make_pair(tmp.first, root);
 		}
 	}
 }
@@ -299,7 +299,7 @@ bimap::left_iterator bimap::insert(left_t const& left, right_t const& right)
 	if (l.pointer != nullptr || r.pointer != nullptr)
 		return left_iterator(nullptr, this);
 	node* splitter = new node(left, right);
-	pair <node*, node*> tmp = split(root_left, splitter, true);
+	std::pair <node*, node*> tmp = split(root_left, splitter, true);
 	root_left = merge(merge(tmp.first, splitter, true), tmp.second, true);
 	tmp = split(root_right, splitter, false);
 	root_right = merge(merge(tmp.first, splitter, false), tmp.second, false);
@@ -308,7 +308,7 @@ bimap::left_iterator bimap::insert(left_t const& left, right_t const& right)
 
 void bimap::erase(node* splitter)
 {
-	pair <node*, node*> tmp = split(root_left, splitter, true);
+	std::pair <node*, node*> tmp = split(root_left, splitter, true);
 	node* now = tmp.second;
 	while (now->left_left != nullptr)
 		now = now->left_left;

@@ -1,14 +1,14 @@
 #ifndef BIMAP_H
 #define BIMAP_H
 
-using namespace std;
+//using namespace std;
 
 struct bimap
 {
 	//friend int main();
     // Вы можете определить эти тайпдефы по вашему усмотрению.
-    typedef string left_t;
-    typedef string right_t;
+    typedef std::string left_t;
+    typedef std::string right_t;
 
     struct left_iterator;
     struct right_iterator;
@@ -79,7 +79,7 @@ struct bimap
 		node* root_left;
 		node* root_right;
 		node* merge(node* l, node* r, bool part);
-		pair <node*, node*> split(node* root, node* splitter, bool part);
+		std::pair <node*, node*> split(node* root, node* splitter, bool part);
 };
 
 struct bimap::left_iterator
