@@ -5,7 +5,6 @@
 
 struct bimap
 {
-	//friend int main();
     // Вы можете определить эти тайпдефы по вашему усмотрению.
     typedef std::string left_t;
     typedef std::string right_t;
@@ -67,12 +66,8 @@ struct bimap
 			node();
 			node(left_t l_data, right_t r_data);
 			~node();
-			
-			friend bimap;
-			friend int main();
 		};
 		
-		friend node;
 		void erase(node* splitter);
 		void delete_all_nodes(node*);
 		
@@ -115,12 +110,12 @@ struct bimap::left_iterator
     
     private:
 		friend bimap;
-		//friend int main();
     
 		node* pointer;
 		const bimap* whose;
 		
 		left_iterator(node* point, const bimap* that);
+		//left_iterator(left_iterator const& another);
 };
 
 struct bimap::right_iterator
@@ -143,12 +138,12 @@ struct bimap::right_iterator
     
     private:
 		friend bimap;
-		//friend int main();
     
 		node* pointer;
 		const bimap* whose;
 		
 		right_iterator(node* point, const bimap* that);
+		//right_iterator(right_iterator const& another);
 		
 };
 

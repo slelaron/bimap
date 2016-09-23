@@ -146,8 +146,9 @@ bimap::left_iterator& bimap::left_iterator::operator++()
 
 bimap::left_iterator bimap::left_iterator::operator++(int)
 {
+	left_iterator it(*this);
 	++(*this);
-	return *this;
+	return it;
 }
 
 bimap::left_iterator& bimap::left_iterator::operator--()
@@ -175,8 +176,9 @@ bimap::left_iterator& bimap::left_iterator::operator--()
 
 bimap::left_iterator bimap::left_iterator::operator--(int)
 {
+	left_iterator it(*this);
 	--(*this);
-	return *this;
+	return it;
 }
 
 bimap::right_iterator& bimap::right_iterator::operator++()
@@ -198,8 +200,9 @@ bimap::right_iterator& bimap::right_iterator::operator++()
 
 bimap::right_iterator bimap::right_iterator::operator++(int)
 {
+	right_iterator it(*this);
 	++(*this);
-	return *this;
+	return it;
 }
 
 bimap::right_iterator& bimap::right_iterator::operator--()
@@ -227,8 +230,9 @@ bimap::right_iterator& bimap::right_iterator::operator--()
 
 bimap::right_iterator bimap::right_iterator::operator--(int)
 {
+	right_iterator it(*this);
 	--(*this);
-	return *this;
+	return it;
 }
 
 bimap::left_iterator bimap::begin_left() const
